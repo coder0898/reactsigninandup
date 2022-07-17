@@ -16,10 +16,24 @@ export const Login = (props) => {
     // console.log(name + "" + value);
     setLogDetails({...logDetails,[name]:value});
   }
-
+  
+  
   const submitLoginDetails = (event)=>{
-     event.preventDefault();
-     console.log(logDetails);
+    event.preventDefault();
+    console.log(logDetails);
+    const getAuthentication = localStorage.getItem("auth");
+    console.log(getAuthentication);
+     if (getAuthentication && getAuthentication.length) {
+         const userData = JSON.parse(getAuthentication);
+         const loginData = userData.filter((el,k)=>{
+          return el.email == logDetails.email && el.password == logDetails.password;
+         });
+         if (loginData.length == 0) {
+            alert("invalid details");          
+         } else {
+           console.log("Log in data successfully");
+         }
+     }
      setLogDetails({
       email: "",
       password: ""

@@ -14,6 +14,8 @@ export const Signup = (props) => {
        confirmPassword:""
     })
 
+    const [data,setData] = useState([]);
+
     const getSignupDetails = (e) => {
       const { name, value } = e.target;
       // console.log(name + "" + value);
@@ -24,6 +26,7 @@ export const Signup = (props) => {
     e.preventDefault();
     if (signDetails.password == signDetails.confirmPassword) {
         console.log(signDetails);
+        localStorage.setItem("auth",JSON.stringify([...data,signDetails]));
         setSignDetails({
           fname:"",
           email:"",
