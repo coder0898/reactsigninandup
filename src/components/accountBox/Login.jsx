@@ -20,13 +20,17 @@ export const Login = (props) => {
   const submitLoginDetails = (event)=>{
      event.preventDefault();
      console.log(logDetails);
+     setLogDetails({
+      email: "",
+      password: ""
+    })
   }
 
   return (
     <BoxContainer>
       <FormContainer>
-        <Input type="email" name='email' placeholder="Email" onChange={(e) => getLoginDetails(e)} />
-        <Input type="password" name='password' placeholder="Password" onChange={(e) => getLoginDetails(e)} />
+        <Input type="email" name='email' value={logDetails.email} placeholder="Email" onChange={(e) => getLoginDetails(e)} />
+        <Input type="password" name='password' value={logDetails.password} placeholder="Password" onChange={(e) => getLoginDetails(e)} />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <MutedLink href="#">Forget your password?</MutedLink>

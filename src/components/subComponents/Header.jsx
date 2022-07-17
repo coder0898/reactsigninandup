@@ -25,6 +25,7 @@ const NavTitle = styled.p`
 `;
 
 const Header = () => {
+
   return (
       <>
       <Navbar>
