@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import styled from 'styled-components';
 import {AccountBox} from './components/accountBox/index';
 import Header from './components/subComponents/Header';
@@ -15,6 +16,7 @@ const AppContainer = styled.div`
 function App() {
   return (
     <>
+    <ToastContainer/>
     <Header/>
     <AppContainer>
       <AccountBox/>

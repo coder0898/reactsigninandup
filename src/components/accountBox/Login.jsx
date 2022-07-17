@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { BoldLink, BoxContainer, FormContainer, Input, MutedLink, SubmitButton } from './common';
 import { Marginer } from "../marginer";
 import { AccountContext } from './accountContext';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Login = (props) => {
 
@@ -29,9 +31,15 @@ export const Login = (props) => {
           return el.email == logDetails.email && el.password == logDetails.password;
          });
          if (loginData.length == 0) {
-            alert("invalid details");          
+            // alert("invalid details");
+            toast.error("invalid details",{
+              position:"top-center"
+            });          
          } else {
            console.log("Log in data successfully");
+           toast.success("Log in successfully",{
+            position:"top-center"
+           });
          }
      }
      setLogDetails({

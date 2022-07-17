@@ -2,6 +2,18 @@ import React, { useContext,useState } from 'react'
 import { BoldLink, BoxContainer, FormContainer, Input, MutedLink, SubmitButton } from './common';
 import { Marginer } from "../marginer";
 import { AccountContext } from './accountContext';
+import styled from 'styled-components';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const NoteText = styled.p`
+   marign-top:10px;
+   marign-bottom:0px;
+   color:red;
+   font-size:10px;
+   font-weight:600;
+   text-decoration:underline;
+`;
 
 export const Signup = (props) => {
 
@@ -24,23 +36,35 @@ export const Signup = (props) => {
 
    const submitSignupDetails = (e)=>{
     e.preventDefault();
-    if (signDetails.password == signDetails.confirmPassword) {
-        console.log(signDetails);
-        localStorage.setItem("auth",JSON.stringify([...data,signDetails]));
+    if (signDetails.password.length < 6) {
+      toast.warning("Please length should be min 6.",{
+        position:"top-center"
+      });
+    }else{
+      if (signDetails.password == signDetails.confirmPassword) {
+          console.log(signDetails);
+          localStorage.setItem("auth",JSON.stringify([...data,signDetails]));
+          setSignDetails({
+            fname:"",
+            email:"",
+            password:"",
+            confirmPassword:""
+         });    
+         toast.success("Data added successfully",{
+          position:"top-center"
+         });  
+      } else {
+        // alert("your confirm password mismatch");
+        toast.error("your password mismatch confirm password!",{
+          position:"top-center"
+        });
         setSignDetails({
-          fname:"",
-          email:"",
-          password:"",
-          confirmPassword:""
-       });      
-    } else {
-      alert("your confirm password mismatch");
-      setSignDetails({
-        fname:'',
-        email:'',
-        password:'',
-        confirmPassword:''
-     });
+          fname:'',
+          email:'',
+          password:'',
+          confirmPassword:''
+       });
+      }
     }
    }
 
@@ -49,7 +73,7 @@ export const Signup = (props) => {
           <FormContainer>
             <Input type="text" name="fname" value={signDetails.fname} placeholder="Full Name" onChange={(e)=>getSignupDetails(e)} />
             <Input type="email" name='email' value={signDetails.email} placeholder="Email" onChange={(e)=>getSignupDetails(e)} />
-            <Input type="password" name='password' value={signDetails.password} placeholder="Password" onChange={(e)=>getSignupDetails(e)} />
+            <Input type="password" name='password' value={signDetails.password} placeholder="Password(Min 8 charater)" onChange={(e)=>getSignupDetails(e)} />
             <Input type="password" name='confirmPassword' value={signDetails.confirmPassword} placeholder="Confirm Password" onChange={(e)=>getSignupDetails(e)} />
           </FormContainer>
           <Marginer direction="vertical" margin={10} />
@@ -61,6 +85,7 @@ export const Signup = (props) => {
               Signin
             </BoldLink>
           </MutedLink>
+          <NoteText>Note:password should contains Capital, special charater and number along with length.</NoteText>
         </BoxContainer>
       );
 }
