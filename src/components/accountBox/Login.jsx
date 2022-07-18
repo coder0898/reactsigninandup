@@ -4,8 +4,11 @@ import { Marginer } from "../marginer";
 import { AccountContext } from './accountContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useNavigate} from "react-router-dom";
 
 export const Login = (props) => {
+
+  const history = useNavigate();
 
   const { switchToSignup } = useContext(AccountContext);
   const [logDetails, setLogDetails] = useState({
@@ -40,6 +43,7 @@ export const Login = (props) => {
            toast.success("Log in successfully",{
             position:"top-center"
            });
+           history("/home");
          }
      }
      setLogDetails({

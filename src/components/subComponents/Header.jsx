@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = styled.nav`
   width:100%;
@@ -26,17 +27,17 @@ const NavTitle = styled.p`
 
 const Header = () => {
 
-  return (
-      <>
-      <Navbar>
-        <div style={{display:"flex"}}>
-         <LogoText>UserManagementSystem</LogoText>
-         <LogoText>(USM)</LogoText>
-        </div>
-         <NavTitle>Login</NavTitle>
-      </Navbar>
-      </>
-  )
+    return (
+        <>
+            <Navbar>
+                <div style={{ display: "flex" }}>
+                    <LogoText>UserManagementSystem</LogoText>
+                    <LogoText>(USM)</LogoText>
+                </div>
+                <NavTitle>Login</NavTitle>
+            </Navbar>
+        </>
+    )
 }
 
 export default Header;

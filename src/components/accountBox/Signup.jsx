@@ -28,6 +28,7 @@ export const Signup = (props) => {
 
     const [data,setData] = useState([]);
 
+    
     const getSignupDetails = (e) => {
       const { name, value } = e.target;
       // console.log(name + "" + value);
