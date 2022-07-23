@@ -1,0 +1,22 @@
+POST http://localhost:5000/signup
+Content-Type: application/json
+
+{
+    "fname":"test2",
+    "email": "test123@gmail.com",
+    "password": "123456rt"
+}
+
+###
+
+GET http://localhost:5000/user
+
+###
+
+POST  http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "test123@gmail.com",
+    "password": "123456rt"
+}

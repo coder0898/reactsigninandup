@@ -5,6 +5,7 @@ import { AccountContext } from './accountContext';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const NoteText = styled.p`
    marign-top:10px;
@@ -45,15 +46,21 @@ export const Signup = (props) => {
       if (signDetails.password == signDetails.confirmPassword) {
           console.log(signDetails);
           localStorage.setItem("auth",JSON.stringify([...data,signDetails]));
+          axios.post("http://localhost:5000/signup",signDetails).
+          then((response)=>{
+            console.log(response);
+            toast.success(response.message,{
+             position:"top-center"
+            });  
+          }).catch((err)=>{
+            console.log(err);
+          });
           setSignDetails({
             fname:"",
             email:"",
             password:"",
             confirmPassword:""
-         });    
-         toast.success("Data added successfully",{
-          position:"top-center"
-         });  
+         });   
       } else {
         // alert("your confirm password mismatch");
         toast.error("your password mismatch confirm password!",{

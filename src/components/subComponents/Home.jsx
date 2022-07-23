@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styled from 'styled-components';
+// import Header from "./Header";
 
 const HomeContainer = styled.div`
   width:400px;
@@ -56,10 +57,12 @@ const Home = () => {
     const fname = userData[0].fname;
     
   return (
+    <>
     <HomeContainer>
         <WelcomeText>Welcome to User Management System <HighlightedText>{fname}</HighlightedText>,Hope you will be satisfy by our service </WelcomeText>
         <LogOutButton onClick={userLogout}>LogOut</LogOutButton>
     </HomeContainer>
+    </>
   )
 }
 

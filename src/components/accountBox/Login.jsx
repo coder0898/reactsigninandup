@@ -5,6 +5,8 @@ import { AccountContext } from './accountContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import { response } from 'express';
 
 export const Login = (props) => {
 
@@ -40,6 +42,12 @@ export const Login = (props) => {
             });          
          } else {
            console.log("Log in data successfully");
+           axios.post("http://localhost:5000/login",logDetails).
+           then((response)=>{
+            console.log(response);
+           }).catch((err)=>{
+            console.log(err);
+           });
            toast.success("Log in successfully",{
             position:"top-center"
            });
