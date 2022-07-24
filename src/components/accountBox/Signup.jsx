@@ -1,6 +1,6 @@
 import React, { useContext,useState } from 'react'
 import { BoldLink, BoxContainer, FormContainer, Input, MutedLink, SubmitButton } from './common';
-import { Marginer } from "../marginer";
+import { Marginer } from "../marginer/index";
 import { AccountContext } from './accountContext';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
@@ -49,7 +49,9 @@ export const Signup = (props) => {
           axios.post("http://localhost:5000/signup",signDetails).
           then((response)=>{
             console.log(response);
-            toast.success(response.message,{
+            console.log(response.data.message);
+            const msg = response.data.message;
+            toast.success(msg,{
              position:"top-center"
             });  
           }).catch((err)=>{

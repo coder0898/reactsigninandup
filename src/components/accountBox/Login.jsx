@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { BoldLink, BoxContainer, FormContainer, Input, MutedLink, SubmitButton } from './common';
-import { Marginer } from "../marginer";
+import { Marginer } from "../marginer/index.jsx";
 import { AccountContext } from './accountContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import { response } from 'express';
 
 export const Login = (props) => {
 
@@ -45,11 +44,12 @@ export const Login = (props) => {
            axios.post("http://localhost:5000/login",logDetails).
            then((response)=>{
             console.log(response);
+            const msg = response.data.message;
+            toast.success(msg,{
+             position:"top-center"
+            });
            }).catch((err)=>{
             console.log(err);
-           });
-           toast.success("Log in successfully",{
-            position:"top-center"
            });
            history("/home");
          }
