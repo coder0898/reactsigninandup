@@ -20,3 +20,33 @@ Content-Type: application/json
     "email": "test123@gmail.com",
     "password": "123456rt"
 }
+
+###
+
+POST  http://localhost:5000/user
+Content-Type: application/json
+
+{
+    "name":"testsample",
+    "email":"testsample@gmail.com",
+    "contact":"9082863334"
+}
+
+###
+
+GET  http://localhost:5000/users
+
+###
+GET  http://localhost:5000/users/c2069c65-1c2c-4aee-9280-22a62158a841
+
+###
+DELETE http://localhost:5000/users/c2069c65-1c2c-4aee-9280-22a62158a841
+
+###
+PUT  http://localhost:5000/users/c2069c65-1c2c-4aee-9280-22a62158a841
+
+Content-Type: application/json
+
+{
+    "name":"test"
+}

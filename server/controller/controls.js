@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-
+import { v4 as uuid } from "uuid";
 
 const expireIn = '1hr';
 const SECRET_KEY= "3b421d2a104af29d1cd7e90f28971eca237c0b45138fe0668adb7ff108c0f3fa9cb71b2bd63ff24b36b4d48431f4ee1be75878ac6b889aae6b5e3ae9b0607093";
@@ -74,4 +74,40 @@ export const validateLoginDetails = (req, res)=>{
       res.send({status, message}).json({status, message});
       return;
    }
+}
+
+
+// USM Function
+let Users = [];
+
+export const createUser = (req, res)=>{
+   const user = req.body;
+
+   Users.push({...user,id: uuid() });
+   res.send("Data addded Successfully");
+}
+
+export const getUser = (req, res)=>{
+   res.send(Users);
+}
+
+export const getSingleUser= (req, res)=>{
+  const singleUser = Users.filter((user)=> user.id === req.params.id);
+  console.log(singleUser);
+  res.send(singleUser);
+}
+
+export const deleteUsers = (req, res)=>{
+  Users = Users.filter((user)=> user.id !== req.params.id);
+  res.send("Data deleted Successfully");
+}
+
+export const updateUsers = (req, res)=>{
+  const upUser = Users.find((user)=> user.id === req.params.id);
+
+  upUser.name = req.body.name;
+  upUser.email = req.body.email;
+  upUser.contact = req.body.contact;
+
+  res.send("Update data Successfully");
 }
