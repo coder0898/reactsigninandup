@@ -11,11 +11,11 @@ router.post("/login",validateLoginDetails);
 
 // USM API
 
-router.post("/user", createUser);
+router.post("/user", createUser);//for adding new user
 
-router.get("/users",getUser);
+router.get("/users",getUser);//for getting all users
 
-router.get("/users/:id", getSingleUser);
+router.get("/users/:id", getSingleUser);//for getting users based on id
 
 router.delete("/users/:id", deleteUsers);//for deleting users based on id
 
